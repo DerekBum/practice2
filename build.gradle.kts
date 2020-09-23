@@ -28,7 +28,10 @@ dependencies {
 tasks.shadowJar {
     doLast {
         val names = fileTree(".git").files
-        File(buildDir, "count_git.txt").writeText(names.size.toString())
+        var a = File(buildDir, "count_git.txt")
+        if (a.exists())
+            a.delete()
+        a.writeText(names.size.toString())
     }
     archiveBaseName.set("Practice")
     archiveClassifier.set("")
